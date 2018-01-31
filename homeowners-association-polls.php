@@ -87,3 +87,30 @@ function wphoa_polls_install()
 
 register_activation_hook(__FILE__,'wphoa_polls_install');
 add_action( 'plugins_loaded', 'wphoa_polls_install' );
+
+add_action('admin_menu', 'add_top_menu');
+
+function add_top_menu() {
+    add_menu_page('Homeowners', 'Homeowners', 'administrator', 'wp-hoa', 'wp_hoa_topmenu');
+    add_submenu_page('wp-hoa', 'Homeowners', 'Polls', 'administrator', 'wp-hoa', 'wp_hoa_topmenu');
+    //add_submenu_page('wp-hoa', 'Homeowners', 'polls2', 'administrator', 'wp-hoa-polls', 'wp_hoa_submenu');
+}
+
+function wp_hoa_router() {
+    define('WP_HOA_ROOT', __DIR__);
+    require_once WP_HOA_ROOT . '/application/bootstrap.php';
+}
+
+function wp_hoa_topmenu() {
+    //echo '<h1>test</h1>';
+    //include plugin_dir_path(__FILE__) .'tmp_test_menu.php';
+    wp_hoa_router();
+}
+
+
+function wp_hoa_submenu() {
+    //include plugin_dir_path(__FILE__) .'tmp_test_menu.php';
+    wp_hoa_router();
+}
+
+//add_action('admin_menu', 'wp_hoa_router');
