@@ -1,16 +1,12 @@
-table {
+.hoa-polls table {
     border-collapse: collapse;
 }
 
-table, th, td {
+.hoa-polls table, th, td {
     border: 1px solid;
     padding: 5px;
 }
 
-th {
+.hoa-polls th {
     background-color: #d3d3d3 !important;
-}
-
-body {
-    font-family: Verdana, sans-serif;
 }

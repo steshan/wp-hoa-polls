@@ -9,7 +9,7 @@
         }
     ?>
 </p>
-<table>
+<table class="hoa-polls">
     <tr>
         <th>Вопрос</th>
         <th>Да</th>
