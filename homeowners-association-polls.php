@@ -85,39 +85,14 @@ function wphoa_polls_install()
 
 }
 
-register_activation_hook(__FILE__,'wphoa_polls_install');
+register_activation_hook(__FILE__, 'wphoa_polls_install');
 add_action( 'plugins_loaded', 'wphoa_polls_install' );
 
-add_action('admin_menu', 'add_top_menu');
+add_action('admin_menu', 'hoa_polls_create_top_menu');
 
-function add_top_menu() {
-    add_menu_page('Homeowners', 'Homeowners', 'administrator', 'wp-hoa', 'wp_hoa_topmenu');
-    add_submenu_page('wp-hoa', 'Homeowners', 'Polls2015', 'administrator', 'wp-hoa-polls2015', 'wp_hoa_submenu2015');
-    add_submenu_page('wp-hoa', 'Homeowners', 'polls2016', 'administrator', 'wp-hoa-polls2016', 'wp_hoa_submenu2016');
+function hoa_polls_create_top_menu() {
+    add_menu_page('Homeowners', 'Polls', 'administrator', 'homeowners-association-polls', 'hoa_polls_router');
 }
-
-function wp_hoa_router($controller, $action, $request) {
-    require_once WP_HOA_ROOT . '/application/core/autoload.php';
-    require_once WP_HOA_ROOT . '/application/core/model.php';
-    require_once WP_HOA_ROOT . '/application/core/view.php';
-    require_once WP_HOA_ROOT . '/application/core/controller.php';
-    require_once WP_HOA_ROOT . '/application/core/route.php';
-    Route::start_wp($controller, $action, $request);
-}
-
-function wp_hoa_topmenu() {
-    wp_hoa_router('Main', 'index', '/');
-}
-
-function wp_hoa_submenu2015() {
-    wp_hoa_router('poll', 'get', '1');
-}
-
-function wp_hoa_submenu2016() {
-    wp_hoa_router('poll', 'get', '2');
-}
-
-//add_action('admin_menu', 'wp_hoa_router');
 
 function hoa_polls_load_resources() {
     wp_register_style( 'hoa-polls', plugins_url('/css/style.css', __FILE__));
@@ -127,3 +102,34 @@ function hoa_polls_load_resources() {
 }
 
 add_action('init', 'hoa_polls_load_resources');
+
+function hoa_polls_router() {
+    require_once WP_HOA_ROOT . '/application/core/autoload.php';
+    require_once WP_HOA_ROOT . '/application/core/model.php';
+    require_once WP_HOA_ROOT . '/application/core/view.php';
+    require_once WP_HOA_ROOT . '/application/core/controller.php';
+    require_once WP_HOA_ROOT . '/application/core/route.php';
+
+    $controller_name = 'Main';
+    $action_name = 'index';
+    $request = '';
+
+    if (isset($_GET['hoa_path'])) {
+        $routes = explode('/', $_GET['hoa_path']);
+        if (!empty($routes[0])) {
+            $controller_name = $routes[0];
+        }
+
+        if (!empty($routes[1])) {
+            $action_name = $routes[1];
+        }
+
+        if (!empty($routes[2])) {
+            $request = $routes[2];
+        }
+    }
+
+    Route::start_wp($controller_name, $action_name, $request);
+}
+
+add_action('the_post', 'hoa_polls_router');
