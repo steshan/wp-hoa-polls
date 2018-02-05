@@ -135,8 +135,8 @@ class Model_Poll extends Model {
 
         $answers_table = Db::getInstance()->prefix . 'hoa_answers';
         $rooms_table = Db::getInstance()->prefix . 'hoa_rooms';
-        $result = Db::getInstance()->get_row("SELECT SUM($rooms_table.totalArea) AS area FROM $answers_table LEFT JOIN $rooms_table ON $answers_table.roomNumber = $rooms_table.roomNumber WHERE $answers_table.answer = $answer AND $answers_table.questionId = $questionId", ARRAY_A);
-
+        $sql = Db::getInstance()->prepare("SELECT SUM($rooms_table.totalArea) AS area FROM $answers_table LEFT JOIN $rooms_table ON $answers_table.roomNumber = $rooms_table.roomNumber WHERE $answers_table.answer = %s AND $answers_table.questionId = $questionId", $answer);
+        $result = Db::getInstance()->get_row($sql, ARRAY_A);
         return $result['area'];
     }
 

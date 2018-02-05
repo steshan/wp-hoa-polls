@@ -50,5 +50,30 @@ class Route {
         */
         die("Page not found");
     }
+
+
+    static function start_wp($controller_name = 'Main', $action_name = 'index', $request = '') {
+
+        $controller_class_name = 'Controller_' . $controller_name;
+        $action_name = 'action_' . $action_name;
+
+        $controller_file = strtolower($controller_name) . '.php';
+        $controller_path = WP_HOA_ROOT . '/application/controller/' . $controller_file;
+        if (file_exists($controller_path)) {
+            include_once $controller_path;
+        } else {
+            Route::ErrorPage404();
+        }
+
+        $controller = new $controller_class_name;
+        $controller->setRequest($request);
+        $action = $action_name;
+
+        if (method_exists($controller, $action)) {
+            $controller->$action();
+        } else {
+            Route::ErrorPage404();
+        }
+    }
 }
 

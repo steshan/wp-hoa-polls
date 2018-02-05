@@ -9,15 +9,15 @@ class Controller_Poll extends Controller
     
     function action_get()
     {
-        $request = explode('/', $_SERVER['REQUEST_URI']);
-        
-        if (!empty($request[3])) {
-            $this->model = new Model_Poll($request[3]);
+        //$request = explode('/', $_SERVER['REQUEST_URI']);
+        $request = $this->getRequest();
+        if (!empty($request)) {
+            $this->model = new Model_Poll($request);
             $data['pollQuestions'] = $this->model->getQuestions();
             $data['pollResult'] = $this->model->getPollResult();
             $data['pollAnswers'] = $this->model->getPollAnswers();
             $data['pollArchived'] = $this->model->isArchivedPoll();
-            $data['pollId'] = $request[3];
+            $data['pollId'] = $request;
             $this->view->generate('poll.php', 'template.php', $data);
         } else {
             Route::ErrorPage404();
