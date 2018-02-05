@@ -47,7 +47,7 @@
             foreach ($row as $key => $column) {
                 echo '<td>' . $column;
                 if ($key == 0 && !$data['pollArchived']){
-                    echo '(<a href="/answer/edit/' . $data['pollId'] . '/' . $column . '"> редактировать</a> / <a href="/answer/delete/' . $data['pollId'] . '/' . $column . '" onclick="return confirmDelete();">удалить</a>)';
+                    echo ' (<a href="/answer/edit/' . $data['pollId'] . '/' . $column . '">редактировать</a> / <a href="/answer/delete/' . $data['pollId'] . '/' . $column . '" onclick="return confirmDelete();">удалить</a>)';
                 }
                 echo '</td>';
             }
