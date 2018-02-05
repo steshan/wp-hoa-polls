@@ -2,7 +2,7 @@
     border-collapse: collapse;
 }
 
-.hoa-polls table, th, td {
+.hoa-polls td, .hoa-polls th {
     border: 1px solid;
     padding: 5px;
 }
