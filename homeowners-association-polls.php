@@ -132,4 +132,4 @@ function hoa_polls_router() {
     Route::start_wp($controller_name, $action_name, $request);
 }
 
-add_action('the_post', 'hoa_polls_router');
+add_action('admin_meta', 'hoa_polls_router');
