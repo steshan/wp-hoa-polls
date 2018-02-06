@@ -278,18 +278,18 @@ class Model_Poll extends Model {
                 throw new InvalidArgumentException('Question should not be empty string');
             }
         }
-        $sql = Db::getInstance()->prepare('INSERT INTO `polls`(`name`, `quorum`) VALUES(?, ?)');
-        try {
-            Db::getInstance()->beginTransaction();
-            $sql->execute(array($data['poll_name'], $data['poll_quorum']));
-            $lastId = Db::getInstance()->lastInsertId();
+      try {
+            $polls_table = Db::getInstance()->prefix . 'hoa_polls';
+            $questions_table = Db::getInstance()->prefix . 'hoa_questions';
+            Db::getInstance()->query("BEGIN");
+            Db::getInstance()->insert($polls_table, array('name'=>$data['poll_name'], 'quorum'=>$data['poll_quorum']));
+            $lastId = Db::getInstance()->insert_id;
             foreach ($data['poll_questions'] as $question) {
-                $sql = Db::getInstance()->prepare('INSERT INTO `questions`(`pollId`, `questionText`) VALUES(?, ?)');
-                $sql->execute(array($lastId, $question));
+                Db::getInstance()->insert($questions_table, array('pollId'=>$lastId, 'questionText'=>$question));
             }
-            Db::getInstance()->commit();
+            Db::getInstance()->query("COMMIT");
         } catch (PDOException $e) {
-            Db::getInstance()->rollback();
+            Db::getInstance()->query("ROLLBACK");
             return false;
         }
         return true;
