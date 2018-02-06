@@ -1,4 +1,4 @@
-<h1><a href="/poll/get/<?php echo $data['pollId']; ?>"><?php echo htmlentities($data['pollName']); ?></a></h1>
+<h1><a href="/wp-admin/admin.php?page=homeowners-association-polls&hoa_path=poll/get/<?php echo $data['pollId']; ?>"><?php echo htmlentities($data['pollName']); ?></a></h1>
 <h2>Квартира <?php echo htmlentities($data['roomNumber']); ?></h2>
 
 

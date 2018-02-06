@@ -1,4 +1,4 @@
-<form action="/admin/import" method="POST">
+<form action="/wp-admin/admin.php?page=homeowners-association-polls&hoa_path=admin/import" method="POST">
     <input type="submit" name="submit" value="Импортировать данные"><br>
     <br>
     <table>
