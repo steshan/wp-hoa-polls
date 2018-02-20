@@ -131,7 +131,10 @@ function hoa_polls_router() {
             $request = $routes[2];
         }
     } else {
-        if ($plugin_page !== 'homeowners-association-polls') {
+        /* If page slug starts with 'homeowners-association-polls-' then we
+         * could determine $controller_name from it.
+         */
+        if (strpos($plugin_page, 'homeowners-association-polls-') === 0) {
             $controller_name = str_replace('homeowners-association-polls-', '', $plugin_page);
         }
     }
