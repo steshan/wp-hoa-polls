@@ -41,16 +41,16 @@ class Model_Admin extends Model
                 $csv_import[$csv_line[$room_column]] = $csv_line[$area_columnn];
             }
         }
-        $sql = Db::getInstance()->prepare('INSERT INTO `rooms`(`roomNumber`, `totalArea`) VALUES(?, ?)');
+        $rooms_table = Db::getInstance()->prefix . 'hoa_rooms';
         try
         {
-            Db::getInstance()->beginTransaction();
+            Db::getInstance()->query("BEGIN");
             foreach ($csv_import as $key => $value) {
-                $sql->execute(array($key, $value));
+                Db::getInstance()->insert($rooms_table, array('roomNumber'=>$key, 'totalArea'=>$value));
             }
-            Db::getInstance()->commit();
+            Db::getInstance()->query("COMMIT");
         } catch (PDOException $e) {
-            Db::getInstance()->rollback();
+            Db::getInstance()->query("ROLLBACK");
             throw $e;
         }
     }
@@ -61,14 +61,8 @@ class Model_Admin extends Model
      */
     function tableView()
     {
-        /*
-        $sql = Db::getInstance()->prepare('SELECT `roomNumber`, `totalArea` FROM `rooms`');
-        $sql->execute();
-        $result = $sql->fetchAll(PDO::FETCH_ASSOC);
-        */
         $rooms_table = Db::getInstance()->prefix . 'hoa_rooms';
         $result = Db::getInstance()->get_results("SELECT `roomNumber`, `totalArea` FROM $rooms_table", ARRAY_A);
-
         return $result;
     }
 
@@ -77,8 +71,7 @@ class Model_Admin extends Model
      */
     function deleteRooms()
     {
-        $sql = Db::getInstance()->prepare('DELETE FROM `rooms`');
-        $sql->execute(array());
-
+        $rooms_table = Db::getInstance()->prefix . 'hoa_rooms';
+        Db::getInstance()->query("DELETE FROM $rooms_table");
     }
 }
