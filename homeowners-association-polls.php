@@ -93,7 +93,7 @@ add_action('admin_menu', 'hoa_polls_create_top_menu');
 function hoa_polls_create_top_menu() {
     add_menu_page('Homeowners polls', 'Polls', 'administrator', 'homeowners-association-polls', 'hoa_polls_router');
     add_submenu_page('homeowners-association-polls', 'Homeowners polls', 'Polls', 'administrator', 'homeowners-association-polls', 'hoa_polls_router');
-    add_submenu_page('homeowners-association-polls', 'Homeowners polls', 'Admin', 'administrator', 'homeowners-association-polls&hoa_path=admin', 'hoa_polls_router');
+    add_submenu_page('homeowners-association-polls', 'Homeowners polls', 'Admin', 'administrator', 'homeowners-association-polls-admin', 'hoa_polls_router');
 }
 
 function hoa_polls_load_resources() {
@@ -112,6 +112,7 @@ function hoa_polls_router() {
     require_once WP_HOA_ROOT . '/application/core/controller.php';
     require_once WP_HOA_ROOT . '/application/core/route.php';
 
+    global $plugin_page;
     $controller_name = 'Main';
     $action_name = 'index';
     $request = '';
@@ -128,6 +129,13 @@ function hoa_polls_router() {
 
         if (!empty($routes[2])) {
             $request = $routes[2];
+        }
+    } else {
+        /* If page slug starts with 'homeowners-association-polls-' then we
+         * could determine $controller_name from it.
+         */
+        if (strpos($plugin_page, 'homeowners-association-polls-') === 0) {
+            $controller_name = str_replace('homeowners-association-polls-', '', $plugin_page);
         }
     }
 
