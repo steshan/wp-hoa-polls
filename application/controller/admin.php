@@ -39,7 +39,7 @@ class Controller_Admin extends Controller {
                 $this->view->generate('50x.php', 'template.php', $data);
             }
             $data['message'] = "Данные импортированы";
-            $data['url'] = '/wp-admin/admin.php?page=homeowners-association-polls&hoa_path=admin';
+            $data['url'] = admin_url('admin.php?page=homeowners-association-polls&hoa_path=admin');
             $this->view->generate('redirect.php', 'template.php', $data);
         }
     }
@@ -49,7 +49,7 @@ class Controller_Admin extends Controller {
         $this->model = new Model_Admin();
         $this->model->deleteRooms();
         $data['message'] = "Данные о квартирах удалены.";
-        $data['url'] = '/wp-admin/admin.php?page=homeowners-association-polls&hoa_path=admin';
+        $data['url'] = admin_url('admin.php?page=homeowners-association-polls&hoa_path=admin');
         $this->view->generate('redirect.php', 'template.php', $data);
     }
 }

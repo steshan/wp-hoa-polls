@@ -22,13 +22,13 @@ class Controller_Answer extends Controller
             {
                 $this->model->addAnswers($_POST);
                 $data['message'] = "Ответ сохранен.";
-                $data['url'] = sprintf("/wp-admin/admin.php?page=homeowners-association-polls&hoa_path=answer/fill/%s", $request);
+                $data['url'] = admin_url(sprintf('admin.php?page=homeowners-association-polls&hoa_path=answer/fill/%s', $request));
                 $this->view->generate('redirect.php', 'template.php', $data);
             }
             catch (InvalidArgumentException $e) {
                 if ($e->getMessage() == "this room is already voted") {
-                    $data['message'] = sprintf("Квартира №%s уже проголосовала.", $_POST['roomNumber']);
-                    $data['url'] = sprintf("/wp-admin/admin.php?page=homeowners-association-polls&hoa_path=answer/edit/%s/%s", $request, $_POST['roomNumber']);
+                    $data['message'] = sprintf('Квартира №%s уже проголосовала.', $_POST['roomNumber']);
+                    $data['url'] = admin_url(sprintf('admin.php?page=homeowners-association-polls&hoa_path=answer/edit/%s/%s', $request, $_POST['roomNumber']));
                     $this->view->generate('redirect.php', 'template.php', $data);
                 } else {
                     throw $e;
@@ -59,14 +59,14 @@ class Controller_Answer extends Controller
             if (isset($_POST['submit']) && $_POST['submit'] == 'Сохранить') {
                 $this->model->editAnswers($_POST['answers'], $data['roomNumber']);
                 $data['message'] = "Ответ сохранен.";
-                $data['url'] = sprintf("/wp-admin/admin.php?page=homeowners-association-polls&hoa_path=poll/get/%s", $data['pollId']);
+                $data['url'] = admin_url(sprintf('admin.php?page=homeowners-association-polls&hoa_path=poll/get/%s', $data['pollId']));
                 $this->view->generate('redirect.php', 'template.php', $data);
             } else {
                 $this->view->generate('answer_edit.php', 'template.php', $data);
             }
         } else {
             $data['message'] = "Редактирование результатов голосования запрещено.";
-            $data['url'] = '/wp-admin/admin.php?page=homeowners-association-polls';
+            $data['url'] = admin_url('admin.php?page=homeowners-association-polls');
             $this->view->generate('redirect.php', 'template.php', $data);
         }
     }
@@ -90,11 +90,11 @@ class Controller_Answer extends Controller
             $data['pollAnswers'] = $this->model->getPollAnswers();
             $data['pollArchived'] = $this->model->isArchivedPoll();
             $data['message'] = "Ответ удален.";
-            $data['url'] = sprintf("/wp-admin/admin.php?page=homeowners-association-polls&hoa_path=poll/get/%s", $data['pollId']);
+            $data['url'] = admin_url(sprintf('admin.php?page=homeowners-association-polls&hoa_path=poll/get/%s', $data['pollId']));
             $this->view->generate('redirect.php', 'template.php', $data);
         } else {
             $data['message'] = "Редактирование результатов голосования запрещено.";
-            $data['url'] = '/wp-admin/admin.php?page=homeowners-association-polls';
+            $data['url'] = admin_url('admin.php?page=homeowners-association-polls');
             $this->view->generate('redirect.php', 'template.php', $data);
         }
     }

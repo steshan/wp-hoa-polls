@@ -28,7 +28,7 @@ class Controller_Poll extends Controller
         if (isset($_POST['submit']) && $_POST['submit'] == 'Сохранить') {
             Model_Poll::addNewPoll($_POST);
             $data['message'] = "Голосование добавлено.";
-            $data['url'] = '/wp-admin/admin.php?page=homeowners-association-polls';
+            $data['url'] = admin_url('admin.php?page=homeowners-association-polls');
             $this->view->generate('redirect.php', 'template.php', $data);
         } else {
             $this->view->generate('poll_add.php', 'template.php');
@@ -47,11 +47,11 @@ class Controller_Poll extends Controller
         if (!$this->model->isArchivedPoll()) {
             $this->model->deletePoll();
             $data['message'] = "Голосование удалено.";
-            $data['url'] = '/wp-admin/admin.php?page=homeowners-association-polls';
+            $data['url'] = admin_url('admin.php?page=homeowners-association-polls');
             $this->view->generate('redirect.php', 'template.php', $data);
         } else {
             $data['message'] = "Удаление голосования запрещено.";
-            $data['url'] = '/wp-admin/admin.php?page=homeowners-association-polls';
+            $data['url'] = admin_url('admin.php?page=homeowners-association-polls');
             $this->view->generate('redirect.php', 'template.php', $data);
         }
     }
@@ -71,14 +71,14 @@ class Controller_Poll extends Controller
             if (isset($_POST['submit']) && $_POST['submit'] == 'Сохранить') {
                 $this->model->editPoll($_POST);
                 $data['message'] = "Голосование сохранено.";
-                $data['url'] = sprintf('/wp-admin/admin.php?page=homeowners-association-polls');
+                $data['url'] = admin_url('admin.php?page=homeowners-association-polls');
                 $this->view->generate('redirect.php', 'template.php', $data);
             } else {
                 $this->view->generate('poll_edit.php', 'template.php', $data);
             }
         } else {
             $data['message'] = "Редактирование голосования запрещено.";
-            $data['url'] = '/wp-admin/admin.php?page=homeowners-association-polls';
+            $data['url'] = admin_url('admin.php?page=homeowners-association-polls');
             $this->view->generate('redirect.php', 'template.php', $data);
         }
     }
@@ -94,7 +94,7 @@ class Controller_Poll extends Controller
         $this->model = new Model_Poll($request);
         $this->model->archivePoll();
         $data['message'] = "Редактирование запрещено.";
-        $data['url'] = '/wp-admin/admin.php?page=homeowners-association-polls';
+        $data['url'] = admin_url('admin.php?page=homeowners-association-polls');
         $this->view->generate('redirect.php', 'template.php', $data);
     }
 }
