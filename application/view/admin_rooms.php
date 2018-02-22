@@ -1,4 +1,4 @@
-<form action="/wp-admin/admin.php?page=homeowners-association-polls&hoa_path=admin/delete" method="POST">
+<form action="<?php echo admin_url('admin.php?page=homeowners-association-polls&hoa_path=admin/delete') ?>" method="POST">
     <input type="submit" name="submit" value="Удалить данные"><br>
     <br>
     <table>

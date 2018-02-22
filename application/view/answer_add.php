@@ -1,6 +1,6 @@
-<h1><a href="/wp-admin/admin.php?page=homeowners-association-polls&hoa_path=poll/get/<?php echo $data['pollId']; ?>"><?php echo htmlentities($data['pollName']); ?></a></h1>
+<h1><a href="<?php echo admin_url('admin.php?page=homeowners-association-polls&hoa_path=poll/get/') . $data['pollId']; ?>"><?php echo htmlentities($data['pollName']); ?></a></h1>
 
-<form action="/wp-admin/admin.php?page=homeowners-association-polls&hoa_path=answer/fill/<?php echo $data['pollId']; ?>" method="POST">
+<form action="<?php echo admin_url('admin.php?page=homeowners-association-polls&hoa_path=answer/fill/') . $data['pollId']; ?>" method="POST">
     <label for="roomNumber">Введите номер квартиры</label>
     <input type="text" name="roomNumber" id="roomNumber">
     <br>
