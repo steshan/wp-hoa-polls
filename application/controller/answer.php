@@ -27,21 +27,15 @@ class Controller_Answer extends Controller
             }
             catch (InvalidArgumentException $e) {
 
-                if ($e->getMessage() == "roomNumber should be integer value between 1 and number of rooms") {
-                    $data['message'] = 'Неверно введен номер квартиры';
-                    $data['url'] = admin_url(sprintf('admin.php?page=homeowners-association-polls&hoa_path=answer/fill/%s', $request));
-                    $this->view->generate('redirect.php', 'template.php', $data);
-                } elseif ($e->getMessage() == "Not all questions answered") {
-                    $data['message'] = 'Вы ответили не на все вопросы';
-                    $data['url'] = admin_url(sprintf('admin.php?page=homeowners-association-polls&hoa_path=answer/fill/%s/', $request));
-                    $this->view->generate('redirect.php', 'template.php', $data);
-                }elseif ($e->getMessage() == "this room is already voted") {
+               if ($e->getMessage() == "this room is already voted") {
                     $data['message'] = sprintf('Квартира №%s уже проголосовала.', $_POST['roomNumber']);
                     $data['url'] = admin_url(sprintf('admin.php?page=homeowners-association-polls&hoa_path=answer/edit/%s/%s', $request, $_POST['roomNumber']));
                     $this->view->generate('redirect.php', 'template.php', $data);
-                } else {
-                    throw $e;
-                }
+               } else {
+                    $data['message'] = $e->getMessage();
+                    $data['url'] = admin_url(sprintf('admin.php?page=homeowners-association-polls&hoa_path=answer/fill/%s', $request));
+                    $this->view->generate('redirect.php', 'template.php', $data);
+               }
             }
         } else {
             $data['pollQuestions'] = $this->model->getQuestions();
@@ -52,7 +46,7 @@ class Controller_Answer extends Controller
 
     function action_edit()
     {
-       if (isset($_GET['hoa_path'])) {
+        if (isset($_GET['hoa_path'])) {
             $routes = explode('/', $_GET['hoa_path']);
             if (!empty($routes[2])) {
                 $data['pollId'] = $routes[2];
@@ -61,7 +55,7 @@ class Controller_Answer extends Controller
                 $data['roomNumber'] = $routes[3];
             }
         }
-     $this->model = new Model_Poll($data['pollId']);
+        $this->model = new Model_Poll($data['pollId']);
         if (!$this->model->isArchivedPoll()) {
             $data['pollName'] = $this->model->getName();
             $data['answers'] = $this->model->getRoomAnswers($data['roomNumber']);
