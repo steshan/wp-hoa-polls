@@ -26,7 +26,16 @@ class Controller_Answer extends Controller
                 $this->view->generate('redirect.php', 'template.php', $data);
             }
             catch (InvalidArgumentException $e) {
-                if ($e->getMessage() == "this room is already voted") {
+
+                if ($e->getMessage() == "roomNumber should be integer value between 1 and number of rooms") {
+                    $data['message'] = 'Неверно введен номер квартиры';
+                    $data['url'] = admin_url(sprintf('admin.php?page=homeowners-association-polls&hoa_path=answer/fill/%s', $request));
+                    $this->view->generate('redirect.php', 'template.php', $data);
+                } elseif ($e->getMessage() == "Not all questions answered") {
+                    $data['message'] = 'Вы ответили не на все вопросы';
+                    $data['url'] = admin_url(sprintf('admin.php?page=homeowners-association-polls&hoa_path=answer/fill/%s/', $request));
+                    $this->view->generate('redirect.php', 'template.php', $data);
+                }elseif ($e->getMessage() == "this room is already voted") {
                     $data['message'] = sprintf('Квартира №%s уже проголосовала.', $_POST['roomNumber']);
                     $data['url'] = admin_url(sprintf('admin.php?page=homeowners-association-polls&hoa_path=answer/edit/%s/%s', $request, $_POST['roomNumber']));
                     $this->view->generate('redirect.php', 'template.php', $data);

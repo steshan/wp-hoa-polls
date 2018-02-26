@@ -26,10 +26,32 @@ class Controller_Poll extends Controller
     function action_add()
     {
         if (isset($_POST['submit']) && $_POST['submit'] == 'Сохранить') {
-            Model_Poll::addNewPoll($_POST);
-            $data['message'] = "Голосование добавлено.";
-            $data['url'] = admin_url('admin.php?page=homeowners-association-polls');
-            $this->view->generate('redirect.php', 'template.php', $data);
+            try {
+                Model_Poll::addNewPoll($_POST);
+                $data['message'] = "Голосование добавлено.";
+                $data['url'] = admin_url('admin.php?page=homeowners-association-polls');
+                $this->view->generate('redirect.php', 'template.php', $data);
+            } catch (InvalidArgumentException $e) {
+                if ($e->getMessage() == "Poll name should be non-empty string") {
+                    $data['message'] = "Введите название голосования.";
+                    $data['url'] = admin_url('admin.php?page=homeowners-association-polls&hoa_path=poll/add');
+                    $this->view->generate('redirect.php', 'template.php', $data);
+                } elseif ($e->getMessage() == "Quorum should be numeric value between 0 and 100") {
+                    $data['message'] = "Кворум должно быть число больше 0 и меньше 100.";
+                    $data['url'] = admin_url('admin.php?page=homeowners-association-polls&hoa_path=poll/add');
+                    $this->view->generate('redirect.php', 'template.php', $data);
+                } elseif ($e->getMessage() == "Questions should be array of strings") {
+                    $data['message'] = "Добавьте вопросы голосования.";
+                    $data['url'] = admin_url('admin.php?page=homeowners-association-polls&hoa_path=poll/add');
+                    $this->view->generate('redirect.php', 'template.php', $data);
+                } elseif ($e->getMessage() == "Question should not be empty string") {
+                    $data['message'] = "Вопрос не может быть пустым.";
+                    $data['url'] = admin_url('admin.php?page=homeowners-association-polls&hoa_path=poll/add');
+                    $this->view->generate('redirect.php', 'template.php', $data);
+                } else {
+                    throw $e;
+                }
+            }
         } else {
             $this->view->generate('poll_add.php', 'template.php');
         }
@@ -69,10 +91,28 @@ class Controller_Poll extends Controller
             $data['pollName'] = $this->model->getName();
             $data['quorum'] = $this->model->getQuorum();
             if (isset($_POST['submit']) && $_POST['submit'] == 'Сохранить') {
-                $this->model->editPoll($_POST);
-                $data['message'] = "Голосование сохранено.";
-                $data['url'] = admin_url('admin.php?page=homeowners-association-polls');
-                $this->view->generate('redirect.php', 'template.php', $data);
+                try {
+                    $this->model->editPoll($_POST);
+                    $data['message'] = "Голосование сохранено.";
+                    $data['url'] = admin_url('admin.php?page=homeowners-association-polls');
+                    $this->view->generate('redirect.php', 'template.php', $data);
+
+                }
+                catch (InvalidArgumentException $e) {
+                    if ($e->getMessage() == "Poll name should be non-empty string") {
+                        $data['message'] = 'Введите название голосования';
+                        $data['url'] = admin_url(sprintf('admin.php?page=homeowners-association-polls&hoa_path=poll/edit/%s', $request));
+                        $this->view->generate('redirect.php', 'template.php', $data);
+                    } elseif ($e->getMessage() == "Quorum should be numeric value between 0 and 100") {
+                        $data['message'] = 'Кворум должно быть число больше 0 и меньше 100.';
+                        $data['url'] = admin_url(sprintf('admin.php?page=homeowners-association-polls&hoa_path=poll/edit/%s', $request));
+                        $this->view->generate('redirect.php', 'template.php', $data);
+                    } else {
+                        throw $e;
+                    }
+
+
+                }
             } else {
                 $this->view->generate('poll_edit.php', 'template.php', $data);
             }
