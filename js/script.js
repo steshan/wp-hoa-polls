@@ -106,6 +106,11 @@ function validatePollEdit() {
     return result;
 }
 
+function resetErrors(elementId){
+    var element = document.getElementById(elementId);
+    element.style.border = '';
+}
+
 function isNumeric(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
 }
