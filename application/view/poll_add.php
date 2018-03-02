@@ -8,7 +8,7 @@
 <input onchange="resetErrors('hoa_poll_quorum');" name="poll_quorum" id="hoa_poll_quorum" type="text">
 <br>
 <br>
-<strong>Список вопросов</strong><br>
+<p id="questions_title"><strong>Список вопросов</strong></p>
 <br>
 <div id="poll_questions">
 </div>

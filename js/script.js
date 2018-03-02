@@ -13,6 +13,7 @@ function addElement(parentId, elementTag, elementId, html) {
     newElement.setAttribute('id', elementId);
     newElement.innerHTML = html;
     p.appendChild(newElement);
+    document.getElementById('questions_title').style.border = '';
 }
 
 function removeElement(elementId) {
@@ -22,8 +23,8 @@ function removeElement(elementId) {
 
 function addPollQuestion() {
     questionId++;
-    var html = '<input type="text" id="question-' + questionId + '" name="poll_questions[]"><a href="" onclick="removeElement(\'question-' + questionId + '\'); return false;">Remove</a>';
-    addElement('poll_questions', 'p', 'question-' + questionId, html);
+    var html = '<input type="text" onchange="resetErrors(\'question-' + questionId + '\');" id="question-' + questionId + '" name="poll_questions[]"><a href="" onclick="removeElement(\'question-entry-' + questionId + '\'); return false;">Remove</a>';
+    addElement('poll_questions', 'p', 'question-entry-' + questionId, html);
 }
 
 var questionId = 0;
@@ -73,6 +74,7 @@ function validatePollAdd() {
 
     if (pollQuestions.childElementCount == 0){
         result = false;
+        document.getElementById('questions_title').style.border = style_error;
     } else {
         var children = pollQuestions.children;
         for (var i = 0; i < children.length; i++) {
