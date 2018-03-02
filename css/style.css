@@ -10,3 +10,7 @@
 .hoa-polls th {
     background-color: #d3d3d3 !important;
 }
+
+#hoaAnswerAdd {
+    display: inline-block;
+}

@@ -36,6 +36,34 @@ function confirmReadOnly() {
     return confirm("Запретить редактировать данные?");
 }
 
+
+function validateAnswerAdd() {
+    var result = true;
+    var style_error = '2px solid red';
+    var roomNumber = document.getElementById('hoa_room_number');
+    var answersParent = document.getElementById('hoaAnswerAdd');
+    var answers = answersParent.getElementsByTagName('input');
+    var numberOfCheckedRadios = 0;
+
+    if (!(isNumeric(roomNumber.value) && roomNumber.value <= 239 && roomNumber.value >= 1)) {
+        roomNumber.style.border = style_error;
+        result = false;
+    }
+
+    for (var i = 0; i < answers.length; i++) {
+        if (answers[i].checked) {
+            numberOfCheckedRadios += 1;
+        }
+    }
+
+    if (answers.length / 3 !== numberOfCheckedRadios) {
+        answersParent.style.border = style_error;
+        result = false;
+    }
+
+    return result;
+}
+
 function validatePollAdd() {
     var result = true;
     var style_error = '2px solid red';
