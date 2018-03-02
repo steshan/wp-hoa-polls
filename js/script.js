@@ -33,39 +33,49 @@ function confirmDelete() {
 }
 
 function confirmReadOnly() {
-	    if (confirm("Запретить редактировать данные?")) {
-	        return true;
-	    } else {
-	        return false;
-	    }
-	}
+    return confirm("Запретить редактировать данные?");
+}
 
-function validationForm(){
-    var pollName = document.getElementById('hoa_poll_name').value;
-    var pollQuorum = document.getElementById('hoa_poll_quorum').value;
-    if (pollName == ''){
-        alert('input poll name');
-        return false;
-    }
-    if (!(isNumeric(pollQuorum) && pollQuorum<=100 && pollQuorum>=0)){
-        alert ('incorrect input quorum')
-        return false;
-    }
+function validatePollAdd() {
+    var result = true;
+    var style_error = '2px solid red';
     var pollQuestions = document.getElementById('poll_questions');
+
+    result = validatePollEdit();
+
     if (pollQuestions.childElementCount == 0){
-        alert ('create at least one question');
-        return false;
+        result = false;
     } else {
         var children = pollQuestions.children;
         for (var i = 0; i < children.length; i++) {
             if (children[i].getElementsByTagName('input')[0].value == ''){
-                alert ('input question text');
-                return false;
+                children[i].getElementsByTagName('input')[0].style.border = style_error;
+                result = false;
             }
         }
 
     }
-    return true;
+
+    return result;
+}
+
+function validatePollEdit() {
+    var result = true;
+    var style_error = '2px solid red';
+    var pollName = document.getElementById('hoa_poll_name');
+    var pollQuorum = document.getElementById('hoa_poll_quorum');
+
+    if (pollName.value === '') {
+        pollName.style.border = style_error;
+        result = false;
+    }
+
+    if (!(isNumeric(pollQuorum.value) && pollQuorum.value <= 100 && pollQuorum.value >=0 )) {
+        pollQuorum.style.border = style_error;
+        result = false;
+    }
+
+    return result;
 }
 
 function isNumeric(n) {

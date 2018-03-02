@@ -1,5 +1,5 @@
 <h1>Новое голосование</h1>
-<form onsubmit="return validationForm();" action="#" method="POST">
+<form onsubmit="return validatePollAdd();" action="#" method="POST">
 <label for="poll_name">Название голосования</label>
 <input name="poll_name" id="hoa_poll_name" type="text">
 <br>
