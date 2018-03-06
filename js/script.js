@@ -38,7 +38,7 @@ function confirmReadOnly() {
 }
 
 
-function validateAnswerAdd() {
+function validateAnswerAdd(rooms) {
     var result = true;
     var style_error = '2px solid red';
     var roomNumber = document.getElementById('hoa_room_number');
@@ -46,7 +46,7 @@ function validateAnswerAdd() {
     var answers = answersParent.getElementsByTagName('input');
     var numberOfCheckedRadios = 0;
 
-    if (!(isNumeric(roomNumber.value) && roomNumber.value <= 239 && roomNumber.value >= 1)) {
+    if (!(isNumeric(roomNumber.value) && roomNumber.value <= rooms && roomNumber.value >= 1)) {
         roomNumber.style.border = style_error;
         result = false;
     }

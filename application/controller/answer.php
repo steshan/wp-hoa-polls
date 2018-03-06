@@ -17,6 +17,7 @@ class Controller_Answer extends Controller
         }
         $data['pollId'] = $request;
         $this->model = new Model_Poll($request);
+        $data['rooms'] = $this->model->getLastRoomNumber();
         if (isset($_POST['submit']) && $_POST['submit'] == 'Сохранить') {
             try
             {
