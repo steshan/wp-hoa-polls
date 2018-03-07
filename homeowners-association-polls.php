@@ -143,3 +143,25 @@ function hoa_polls_router() {
 }
 
 add_action('admin_meta', 'hoa_polls_router');
+
+function hoaRenderPoll($attrs){
+    if (isset($attrs['id'])) {
+        require_once WP_HOA_ROOT . '/application/core/autoload.php';
+        require_once WP_HOA_ROOT . '/application/core/model.php';
+        require_once WP_HOA_ROOT . '/application/core/view.php';
+        $view = new View();
+        $model = new Model_Poll($attrs['id']);
+        $data = array();
+        $data['pollQuestions'] = $model->getQuestions();
+        $data['pollResult'] = $model->getPollResult();
+        $data['pollAnswers'] = $model->getPollAnswers();
+        $data['pollArchived'] = $model->isArchivedPoll();
+        $data['pollId'] = $attrs['id'];
+        $html = $view->generate('shortcode_poll.php', 'template.php', $data);
+    } else {
+        $html = '';
+    }
+    return $html;
+}
+
+add_shortcode( 'hoa_poll', 'hoaRenderPoll' );
