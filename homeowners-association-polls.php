@@ -151,6 +151,7 @@ function hoaRenderPoll($attrs){
         require_once WP_HOA_ROOT . '/application/core/view.php';
         $view = new View();
         $model = new Model_Poll($attrs['id']);
+        $data = array();
         $data['pollQuestions'] = $model->getQuestions();
         $data['pollResult'] = $model->getPollResult();
         $data['pollAnswers'] = $model->getPollAnswers();
