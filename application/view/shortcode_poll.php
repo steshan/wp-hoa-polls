@@ -18,11 +18,29 @@
     </tr>
     <?php
         foreach ($data['pollResult']['questions'] as $row) {
+            $answer = '';
+            foreach ($data['user_answers'] as $user_answers){
+                if ($user_answers['questionText'] == $row['title']) {
+                    $answer = $user_answers['answer'];
+                }
+            }
             echo '<tr>';
             echo '<td>' . $row['title'] . '</td>';
-            echo '<td>' . $row['yes'] . '%</td>';
-            echo '<td>' . $row['no'] . '%</td>';
-            echo '<td>' . $row['skip'] . '%</td>';
+            if ($answer == 'YES') {
+                echo '<td><strong>' . $row['yes'] . '%</strong></td>';
+            } else {
+                echo '<td>' . $row['yes'] . '%</td>';
+            }
+            if ($answer == 'NO') {
+                echo '<td><strong>' . $row['no'] . '%</strong></td>';
+            } else {
+                echo '<td>' . $row['no'] . '%</td>';
+            }
+            if ($answer == 'SKIP') {
+                echo '<td><strong>' . $row['skip'] . '%</strong></td>';
+            } else {
+                echo '<td>' . $row['skip'] . '%</td>';
+            }
             echo '</tr>';
         }
     ?>

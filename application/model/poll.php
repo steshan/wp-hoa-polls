@@ -356,5 +356,18 @@ class Model_Poll extends Model {
             return true;
         }
     }
+
+    /**
+     * Get answers for every question per login
+     * @param $id int
+     * @return array
+     */
+    function getRoomVoted($id)
+    {
+        $result = Db::getInstance()->get_row("SELECT meta_value FROM wp_usermeta WHERE user_id =  $id AND meta_key = 'wphoa_apartment_number'", ARRAY_A);
+        $room = $result['meta_value'];
+        $result = $this->getRoomAnswers($room);
+        return $result;
+    }
 }
 
