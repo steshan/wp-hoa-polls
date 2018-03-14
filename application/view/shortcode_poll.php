@@ -26,20 +26,12 @@
             }
             echo '<tr>';
             echo '<td>' . $row['title'] . '</td>';
-            if ($answer == 'YES') {
-                echo '<td><strong>' . $row['yes'] . '%</strong></td>';
-            } else {
-                echo '<td>' . $row['yes'] . '%</td>';
-            }
-            if ($answer == 'NO') {
-                echo '<td><strong>' . $row['no'] . '%</strong></td>';
-            } else {
-                echo '<td>' . $row['no'] . '%</td>';
-            }
-            if ($answer == 'SKIP') {
-                echo '<td><strong>' . $row['skip'] . '%</strong></td>';
-            } else {
-                echo '<td>' . $row['skip'] . '%</td>';
+            foreach (array('YES', 'NO', 'SKIP') as $option) {
+                if ($answer === $option) {
+                    echo '<td><strong>' . $row[strtolower($option)] . '%</strong></td>';
+                } else {
+                    echo '<td>' . $row[strtolower($option)] . '%</td>';
+                }
             }
             echo '</tr>';
         }
