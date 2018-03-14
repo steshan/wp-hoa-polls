@@ -155,7 +155,10 @@ function hoaRenderPoll($attrs){
         $data['user_answers'] = array();
         if (is_user_logged_in()) {
             $hoa_user = wp_get_current_user();
-            $data['user_answers'] = $model->getRoomAnswers(get_user_meta($hoa_user->ID, 'wphoa_apartment_number', true));
+            $room = intval(get_user_meta($hoa_user->ID, 'wphoa_apartment_number', true));
+            if ($room > 0) {
+                $data['user_answers'] = $model->getRoomAnswers($room);
+            }
         }
         $data['pollQuestions'] = $model->getQuestions();
         $data['pollResult'] = $model->getPollResult();
