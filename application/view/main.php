@@ -11,5 +11,5 @@
     ?>
 </ol>
 <br>
-<a href=" <?php echo admin_url('admin.php?page=homeowners-association-polls&hoa_path=poll/add'); ?>">Добавить голосование</a>
+<a href=" <?php echo admin_url('admin.php?page=homeowners-association-polls&hoa_path=poll/add'); ?>"><?php _e('Add poll', 'hoa_polls'); ?></a>
 <br>

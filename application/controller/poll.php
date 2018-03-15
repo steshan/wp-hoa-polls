@@ -28,7 +28,7 @@ class Controller_Poll extends Controller
         if (isset($_POST['submit']) && $_POST['submit'] == 'Сохранить') {
             try {
                 Model_Poll::addNewPoll($_POST);
-                $data['message'] = "Голосование добавлено.";
+                $data['message'] = __('Poll is added.', 'hoa_polls');
                 $data['url'] = admin_url('admin.php?page=homeowners-association-polls');
                 $this->view->generate('redirect.php', 'template.php', $data);
             } catch (InvalidArgumentException $e) {
@@ -52,7 +52,7 @@ class Controller_Poll extends Controller
         $this->model = new Model_Poll($request);
         if (!$this->model->isArchivedPoll()) {
             $this->model->deletePoll();
-            $data['message'] = "Голосование удалено.";
+            $data['message'] = __('Poll is deleted.', 'hoa_polls');
             $data['url'] = admin_url('admin.php?page=homeowners-association-polls');
             $this->view->generate('redirect.php', 'template.php', $data);
         } else {

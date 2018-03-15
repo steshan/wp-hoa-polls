@@ -173,3 +173,9 @@ function hoaRenderPoll($attrs){
 }
 
 add_shortcode( 'hoa_poll', 'hoaRenderPoll' );
+
+function wphoa_polls_init() {
+  load_plugin_textdomain('hoa_polls', false, plugin_basename( dirname( __FILE__ ) ) . '/languages' );
+}
+
+add_action('plugins_loaded', 'wphoa_polls_init');
