@@ -18,7 +18,7 @@ class Controller_Admin extends Controller {
     }
 
     function action_import(){
-        if (isset($_POST['submit']) && $_POST['submit'] == __('Download', 'hoa_polls')) {
+        if (isset($_POST['submit']) && $_POST['submit'] == __('Upload', 'hoa_polls')) {
             $this->model = new Model_Admin();
             $table = $this->model->previewCsv($_FILES);
             $this->view->generate('admin_table.php', 'template.php', $table);

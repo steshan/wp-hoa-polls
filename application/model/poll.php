@@ -167,13 +167,12 @@ class Model_Poll extends Model {
         $sql = Db::getInstance()->prepare("SELECT questionId, roomNumber, answer FROM $answers_table LEFT JOIN $questions_table ON $questions_table.id = $answers_table.questionId WHERE pollId = %d ORDER BY roomNumber", $this->id);
         $result = Db::getInstance()->get_results($sql, ARRAY_A);
         $data = array();
-        $l10n = array('YES' => 'Да', 'NO' => 'Нет', 'SKIP' => 'Воздержался');
         foreach ($result as $row) {
             foreach ($questions as $question)  {
                 if ($question['id'] == $row['questionId']) {
                     $room = $row['roomNumber'];
                     $data[$room][0] = $room;
-                    $data[$room][$question['id']] = $l10n[$row['answer']];
+                    $data[$room][$question['id']] = ucfirst(strtolower($row['answer']));
                 }
             }
         }

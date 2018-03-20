@@ -46,7 +46,7 @@
             echo '<tr>';
             ksort($row);
             foreach ($row as $key => $column) {
-                echo '<td>' . $column;
+                echo '<td>' . __($column, 'hoa_polls');
                 if ($key == 0 && !$data['pollArchived']){
                     echo '(<a href="' . admin_url('admin.php?page=homeowners-association-polls&hoa_path=answer/edit/') . $data['pollId'] . '/' . $column . '">' . __('edit', 'hoa_polls') . '</a> / <a href="' . admin_url('admin.php?page=homeowners-association-polls&hoa_path=answer/delete/') . $data['pollId'] . '/' . $column . '" onclick="return confirmDelete();">' . __('delete', 'hoa_polls') . '</a>)';
                 }
