@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Home owners association polls\n"
-"POT-Creation-Date: 2018-03-20 14:09+0300\n"
-"PO-Revision-Date: 2018-03-20 14:09+0300\n"
+"POT-Creation-Date: 2018-03-20 22:16+0300\n"
+"PO-Revision-Date: 2018-03-20 22:16+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru_RU\n"
@@ -17,9 +17,9 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: application/controller/admin.php:21
-msgid "Download"
-msgstr "Загрузить"
+#: application/controller/admin.php:21 application/view/admin.php:3
+msgid "Upload"
+msgstr ""
 
 #: application/controller/admin.php:26 application/view/admin_table.php:2
 msgid "Import"
@@ -81,6 +81,16 @@ msgstr "Удаление голосования запрещено."
 msgid "The poll is saved"
 msgstr "Голосование сохранено."
 
+#: application/model/admin.php:32 application/view/admin_rooms.php:6
+#: application/view/admin_table.php:9
+msgid "Room number"
+msgstr "Номер квартиры"
+
+#: application/model/admin.php:33 application/view/admin_rooms.php:6
+#: application/view/admin_table.php:9
+msgid "Room area"
+msgstr "Площадь квартиры"
+
 #: application/view/404.php:1
 msgid "Page not found."
 msgstr "Страница не найдена."
@@ -92,14 +102,6 @@ msgstr "Ошибка"
 #: application/view/admin_rooms.php:2
 msgid "Delete data"
 msgstr "Удалить данные"
-
-#: application/view/admin_rooms.php:6 application/view/admin_table.php:9
-msgid "Room number"
-msgstr "Номер квартиры"
-
-#: application/view/admin_rooms.php:6 application/view/admin_table.php:9
-msgid "Room area"
-msgstr "Площадь квартиры"
 
 #: application/view/answer_add.php:4
 msgid "Enter room number"
@@ -195,6 +197,17 @@ msgstr "Новый вопрос"
 #: application/view/poll_edit.php:1
 msgid "Edit poll"
 msgstr "Редактировать голосование"
+
+#: homeowners-association-polls.php:94
+msgid "Polls"
+msgstr "Голосования"
+
+#: homeowners-association-polls.php:96
+msgid "Settings"
+msgstr "Настройки"
+
+#~ msgid "Download"
+#~ msgstr "Загрузить"
 
 #~ msgid "there is a quarum"
 #~ msgstr "Кворум есть."

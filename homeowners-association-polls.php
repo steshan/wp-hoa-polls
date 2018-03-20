@@ -91,9 +91,9 @@ add_action( 'plugins_loaded', 'wphoa_polls_install' );
 add_action('admin_menu', 'hoa_polls_create_top_menu');
 
 function hoa_polls_create_top_menu() {
-    add_menu_page('Homeowners polls', 'Polls', 'administrator', 'homeowners-association-polls', 'hoa_polls_router');
-    add_submenu_page('homeowners-association-polls', 'Homeowners polls', 'Polls', 'administrator', 'homeowners-association-polls', 'hoa_polls_router');
-    add_submenu_page('homeowners-association-polls', 'Homeowners polls', 'Admin', 'administrator', 'homeowners-association-polls-admin', 'hoa_polls_router');
+    add_menu_page('Homeowners polls', __('Polls', 'hoa_polls'), 'administrator', 'homeowners-association-polls', 'hoa_polls_router');
+    add_submenu_page('homeowners-association-polls', 'Homeowners polls', __('Polls', 'hoa_polls'), 'administrator', 'homeowners-association-polls', 'hoa_polls_router');
+    add_submenu_page('homeowners-association-polls', 'Homeowners polls', __('Settings', 'hoa_polls'), 'administrator', 'homeowners-association-polls-admin', 'hoa_polls_router');
 }
 
 function hoa_polls_load_resources() {
