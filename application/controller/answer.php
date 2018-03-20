@@ -18,18 +18,18 @@ class Controller_Answer extends Controller
         $data['pollId'] = $request;
         $this->model = new Model_Poll($request);
         $data['rooms'] = $this->model->getLastRoomNumber();
-        if (isset($_POST['submit']) && $_POST['submit'] == 'Сохранить') {
+        if (isset($_POST['submit']) && $_POST['submit'] == __('Save', 'hoa_polls')) {
             try
             {
                 $this->model->addAnswers($_POST);
-                $data['message'] = "Ответ сохранен.";
+                $data['message'] = __('The answer is saved.', 'hoa_polls');
                 $data['url'] = admin_url(sprintf('admin.php?page=homeowners-association-polls&hoa_path=answer/fill/%s', $request));
                 $this->view->generate('redirect.php', 'template.php', $data);
             }
             catch (InvalidArgumentException $e) {
 
-               if ($e->getMessage() == "this room is already voted") {
-                    $data['message'] = sprintf('Квартира №%s уже проголосовала.', $_POST['roomNumber']);
+               if ($e->getMessage() == 'this room is already voted') {
+                    $data['message'] = sprintf(__('Room №%s is already voted.', 'hoa_polls'), $_POST['roomNumber']);
                     $data['url'] = admin_url(sprintf('admin.php?page=homeowners-association-polls&hoa_path=answer/edit/%s/%s', $request, $_POST['roomNumber']));
                     $this->view->generate('redirect.php', 'template.php', $data);
                } else {
@@ -60,16 +60,16 @@ class Controller_Answer extends Controller
         if (!$this->model->isArchivedPoll()) {
             $data['pollName'] = $this->model->getName();
             $data['answers'] = $this->model->getRoomAnswers($data['roomNumber']);
-            if (isset($_POST['submit']) && $_POST['submit'] == 'Сохранить') {
+            if (isset($_POST['submit']) && $_POST['submit'] == __('Save', 'hoa_polls')) {
                 $this->model->editAnswers($_POST['answers'], $data['roomNumber']);
-                $data['message'] = "Ответ сохранен.";
+                $data['message'] = __('The answer is saved.', 'hoa_polls');
                 $data['url'] = admin_url(sprintf('admin.php?page=homeowners-association-polls&hoa_path=poll/get/%s', $data['pollId']));
                 $this->view->generate('redirect.php', 'template.php', $data);
             } else {
                 $this->view->generate('answer_edit.php', 'template.php', $data);
             }
         } else {
-            $data['message'] = "Редактирование результатов голосования запрещено.";
+            $data['message'] = __("You can't edit this poll.", 'hoa_polls');
             $data['url'] = admin_url('admin.php?page=homeowners-association-polls');
             $this->view->generate('redirect.php', 'template.php', $data);
         }
@@ -93,11 +93,11 @@ class Controller_Answer extends Controller
             $data['pollResult'] = $this->model->getPollResult();
             $data['pollAnswers'] = $this->model->getPollAnswers();
             $data['pollArchived'] = $this->model->isArchivedPoll();
-            $data['message'] = "Ответ удален.";
+            $data['message'] = __('The answer is deleted.', 'hoa_polls');
             $data['url'] = admin_url(sprintf('admin.php?page=homeowners-association-polls&hoa_path=poll/get/%s', $data['pollId']));
             $this->view->generate('redirect.php', 'template.php', $data);
         } else {
-            $data['message'] = "Редактирование результатов голосования запрещено.";
+            $data['message'] = __("You can't change results of poll.", 'hoa_polls');
             $data['url'] = admin_url('admin.php?page=homeowners-association-polls');
             $this->view->generate('redirect.php', 'template.php', $data);
         }

@@ -18,15 +18,15 @@ class Controller_Admin extends Controller {
     }
 
     function action_import(){
-        if (isset($_POST['submit']) && $_POST['submit'] == 'Загрузить') {
+        if (isset($_POST['submit']) && $_POST['submit'] == __('Download', 'hoa_polls')) {
             $this->model = new Model_Admin();
             $table = $this->model->previewCsv($_FILES);
             $this->view->generate('admin_table.php', 'template.php', $table);
         }
-        if (isset($_POST['submit']) && $_POST['submit'] == 'Импортировать данные') {
+        if (isset($_POST['submit']) && $_POST['submit'] == __('Import', 'hoa_polls')) {
             $columns = array();
             foreach ($_POST['column_type'] as $key => $value){
-                if (!($value=="Выберите тип столбца")) {
+                if (!($value==__('Select a column type', 'hoa_polls'))) {
                      $columns[$value] =  $key;
                 }
             }
@@ -38,7 +38,7 @@ class Controller_Admin extends Controller {
                 $data['message'] = $e->getMessage();
                 $this->view->generate('50x.php', 'template.php', $data);
             }
-            $data['message'] = "Данные импортированы";
+            $data['message'] = __('Data imported', 'hoa_polls');
             $data['url'] = admin_url('admin.php?page=homeowners-association-polls&hoa_path=admin');
             $this->view->generate('redirect.php', 'template.php', $data);
         }
@@ -48,7 +48,7 @@ class Controller_Admin extends Controller {
     {
         $this->model = new Model_Admin();
         $this->model->deleteRooms();
-        $data['message'] = "Данные о квартирах удалены.";
+        $data['message'] = __('Data deleted', 'hoa_polls');
         $data['url'] = admin_url('admin.php?page=homeowners-association-polls&hoa_path=admin');
         $this->view->generate('redirect.php', 'template.php', $data);
     }

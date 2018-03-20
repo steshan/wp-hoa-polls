@@ -1,1 +1,1 @@
-<h1>Page not found.</h1>
+<h1><?php _e('Page not found.', 'hoa_polls'); ?></h1>
