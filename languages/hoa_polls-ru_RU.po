@@ -1,0 +1,258 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Home owners association polls\n"
+"POT-Creation-Date: 2018-03-20 22:16+0300\n"
+"PO-Revision-Date: 2018-03-20 22:16+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ru_RU\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.11\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: application/controller/admin.php:21 application/view/admin.php:3
+msgid "Upload"
+msgstr ""
+
+#: application/controller/admin.php:26 application/view/admin_table.php:2
+msgid "Import"
+msgstr "Импортировать данные"
+
+#: application/controller/admin.php:29 application/view/admin_table.php:9
+msgid "Select a column type"
+msgstr "Выберите тип столбца"
+
+#: application/controller/admin.php:41
+msgid "Data imported"
+msgstr "Данные импортированы"
+
+#: application/controller/admin.php:51
+msgid "Data deleted"
+msgstr "Данные удалены"
+
+#: application/controller/answer.php:21 application/controller/answer.php:63
+#: application/controller/poll.php:28 application/controller/poll.php:77
+#: application/view/answer_add.php:16 application/view/answer_edit.php:27
+#: application/view/poll_add.php:18 application/view/poll_edit.php:11
+msgid "Save"
+msgstr "Сохранить"
+
+#: application/controller/answer.php:25 application/controller/answer.php:65
+msgid "The answer is saved."
+msgstr "Ответ сохранен."
+
+#: application/controller/answer.php:32
+#, php-format
+msgid "Room №%s is already voted."
+msgstr "Квартира №%s уже проголосовала."
+
+#: application/controller/answer.php:72 application/controller/poll.php:93
+msgid "You can't edit this poll."
+msgstr "Редактирование голосования запрещено."
+
+#: application/controller/answer.php:96
+msgid "The answer is deleted."
+msgstr "Ответ удален."
+
+#: application/controller/answer.php:100
+msgid "You can't change results of poll."
+msgstr "Редактирование голосования запрещено."
+
+#: application/controller/poll.php:31
+msgid "Poll is added."
+msgstr "Голосование добавлено."
+
+#: application/controller/poll.php:55
+msgid "Poll is deleted."
+msgstr "Голосование удалено."
+
+#: application/controller/poll.php:59
+msgid "You can't delete this poll."
+msgstr "Удаление голосования запрещено."
+
+#: application/controller/poll.php:80
+msgid "The poll is saved"
+msgstr "Голосование сохранено."
+
+#: application/model/admin.php:32 application/view/admin_rooms.php:6
+#: application/view/admin_table.php:9
+msgid "Room number"
+msgstr "Номер квартиры"
+
+#: application/model/admin.php:33 application/view/admin_rooms.php:6
+#: application/view/admin_table.php:9
+msgid "Room area"
+msgstr "Площадь квартиры"
+
+#: application/view/404.php:1
+msgid "Page not found."
+msgstr "Страница не найдена."
+
+#: application/view/50x.php:1
+msgid "Error"
+msgstr "Ошибка"
+
+#: application/view/admin_rooms.php:2
+msgid "Delete data"
+msgstr "Удалить данные"
+
+#: application/view/answer_add.php:4
+msgid "Enter room number"
+msgstr "Введите номер квартиры"
+
+#: application/view/answer_add.php:11 application/view/answer_edit.php:12
+#: application/view/answer_edit.php:15 application/view/answer_edit.php:18
+#: application/view/poll.php:15 application/view/shortcode_poll.php:15
+msgid "Yes"
+msgstr "Да"
+
+#: application/view/answer_add.php:11 application/view/answer_edit.php:12
+#: application/view/answer_edit.php:15 application/view/answer_edit.php:18
+#: application/view/poll.php:16 application/view/shortcode_poll.php:16
+msgid "No"
+msgstr "Нет"
+
+#: application/view/answer_add.php:11 application/view/answer_edit.php:12
+#: application/view/answer_edit.php:15 application/view/answer_edit.php:18
+#: application/view/poll.php:17 application/view/shortcode_poll.php:17
+msgid "Skip"
+msgstr "Воздержался"
+
+#: application/view/answer_edit.php:2 application/view/poll.php:37
+msgid "Room"
+msgstr "Квартира"
+
+#: application/view/main.php:1
+msgid "List of polls:"
+msgstr "Список голосований:"
+
+#: application/view/main.php:7 application/view/poll.php:51
+msgid "edit"
+msgstr "редактировать"
+
+#: application/view/main.php:7
+msgid "archive"
+msgstr "архивировать"
+
+#: application/view/main.php:7 application/view/poll.php:51
+msgid "delete"
+msgstr "удалить"
+
+#: application/view/main.php:14
+msgid "Add poll"
+msgstr "Добавить голосование"
+
+#: application/view/poll.php:4 application/view/shortcode_poll.php:4
+#, php-format
+msgid "%s rooms have voted. It's %s%% of the vote. "
+msgstr "Проголосовало %s квартир, обладающих %s%% голосов. "
+
+#: application/view/poll.php:6 application/view/shortcode_poll.php:6
+msgid "There is a quorum"
+msgstr "Кворум есть"
+
+#: application/view/poll.php:8 application/view/shortcode_poll.php:8
+msgid "There is no quorum"
+msgstr "Кворума нет"
+
+#: application/view/poll.php:14 application/view/shortcode_poll.php:14
+msgid "Question"
+msgstr "Вопрос"
+
+#: application/view/poll.php:31
+msgid "Show answers"
+msgstr "Показать ответы"
+
+#: application/view/poll.php:63
+msgid "Add answers"
+msgstr "Добавить ответы"
+
+#: application/view/poll_add.php:1
+msgid "New poll"
+msgstr "Новое голосование"
+
+#: application/view/poll_add.php:3 application/view/poll_edit.php:3
+msgid "Poll name"
+msgstr "Название голосования"
+
+#: application/view/poll_add.php:7 application/view/poll_edit.php:7
+msgid "Minimum number of votes for a quorum"
+msgstr "Минимум голосов для кворума"
+
+#: application/view/poll_add.php:11
+msgid "Question list"
+msgstr "Список вопросов"
+
+#: application/view/poll_add.php:16
+msgid "New question"
+msgstr "Новый вопрос"
+
+#: application/view/poll_edit.php:1
+msgid "Edit poll"
+msgstr "Редактировать голосование"
+
+#: homeowners-association-polls.php:94
+msgid "Polls"
+msgstr "Голосования"
+
+#: homeowners-association-polls.php:96
+msgid "Settings"
+msgstr "Настройки"
+
+#~ msgid "Download"
+#~ msgstr "Загрузить"
+
+#~ msgid "there is a quarum"
+#~ msgstr "Кворум есть."
+
+#~ msgid "there is no quorum"
+#~ msgstr "Кворума нет."
+
+#~ msgid "%s rooms have voted. It's %s percent of the vote. "
+#~ msgstr "Проголосовало %s квартир, обладающих %s процентами голосов. "
+
+#~ msgid "this room is already voted"
+#~ msgstr "Данная квартира уже проголосовала."
+
+#~ msgid "File not found."
+#~ msgstr "Файл не найден."
+
+#~ msgid "Poll name should be non-empty string"
+#~ msgstr "Введите название голосования."
+
+#~ msgid "Quorum should be numeric value between 0 and 100"
+#~ msgstr "Введите кворум (число 0-100)."
+
+#~ msgid "Questions should be array of strings"
+#~ msgstr "Добавьте хотя бы 1 вопрос."
+
+#~ msgid "Question should not be empty string"
+#~ msgstr "Заполните вопрос."
+
+#~ msgid "roomNumber should be integer value between 1 and number of rooms"
+#~ msgstr "Ведите номер квартиры (число)."
+
+#~ msgid "Not all questions answered"
+#~ msgstr "Вы ответили не на все вопросы."
+
+#~ msgid "arcive"
+#~ msgstr "архивировать"
+
+#~ msgid "You can't change rezults of poll."
+#~ msgstr "Редактирование результатов голосования запрещено."
+
+#~ msgid "You can't change rezults of poll"
+#~ msgstr "Редактирование результатов голосования запрещено."
+
+#~ msgid "Poll was added."
+#~ msgstr "Голосование добавлено"
+
+#~ msgid "The poll is added."
+#~ msgstr "Голосование добавлено."

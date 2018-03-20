@@ -25,10 +25,10 @@ class Controller_Poll extends Controller
 
     function action_add()
     {
-        if (isset($_POST['submit']) && $_POST['submit'] == 'Сохранить') {
+        if (isset($_POST['submit']) && $_POST['submit'] == __('Save', 'hoa_polls')) {
             try {
                 Model_Poll::addNewPoll($_POST);
-                $data['message'] = "Голосование добавлено.";
+                $data['message'] = __('Poll is added.', 'hoa_polls');
                 $data['url'] = admin_url('admin.php?page=homeowners-association-polls');
                 $this->view->generate('redirect.php', 'template.php', $data);
             } catch (InvalidArgumentException $e) {
@@ -52,11 +52,11 @@ class Controller_Poll extends Controller
         $this->model = new Model_Poll($request);
         if (!$this->model->isArchivedPoll()) {
             $this->model->deletePoll();
-            $data['message'] = "Голосование удалено.";
+            $data['message'] = __('Poll is deleted.', 'hoa_polls');
             $data['url'] = admin_url('admin.php?page=homeowners-association-polls');
             $this->view->generate('redirect.php', 'template.php', $data);
         } else {
-            $data['message'] = "Удаление голосования запрещено.";
+            $data['message'] = __("You can't delete this poll.", 'hoa_polls');
             $data['url'] = admin_url('admin.php?page=homeowners-association-polls');
             $this->view->generate('redirect.php', 'template.php', $data);
         }
@@ -74,10 +74,10 @@ class Controller_Poll extends Controller
         if (!$this->model->isArchivedPoll()) {
             $data['pollName'] = $this->model->getName();
             $data['quorum'] = $this->model->getQuorum();
-            if (isset($_POST['submit']) && $_POST['submit'] == 'Сохранить') {
+            if (isset($_POST['submit']) && $_POST['submit'] == __('Save', 'hoa_polls')) {
                 try {
                     $this->model->editPoll($_POST);
-                    $data['message'] = "Голосование сохранено.";
+                    $data['message'] = __('The poll is saved', 'hoa_polls');
                     $data['url'] = admin_url('admin.php?page=homeowners-association-polls');
                     $this->view->generate('redirect.php', 'template.php', $data);
 
@@ -90,7 +90,7 @@ class Controller_Poll extends Controller
                 $this->view->generate('poll_edit.php', 'template.php', $data);
             }
         } else {
-            $data['message'] = "Редактирование голосования запрещено.";
+            $data['message'] = __("You can't edit this poll.", 'hoa_polls');
             $data['url'] = admin_url('admin.php?page=homeowners-association-polls');
             $this->view->generate('redirect.php', 'template.php', $data);
         }

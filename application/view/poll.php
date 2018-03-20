@@ -1,20 +1,20 @@
 <h1><?php echo htmlentities($data['pollResult']['title']); ?></h1>
 <p>
-Проголосовало <?php echo $data['pollResult']['numberOfVoters']; ?> квартир, обладающих <?php echo $data['pollResult']['percentVoted']; ?>% голосов - 
     <?php
+        echo sprintf(__("%s rooms have voted. It's %s%% of the vote. ", 'hoa_polls'), $data['pollResult']['numberOfVoters'], $data['pollResult']['percentVoted']);
         if ($data['pollResult']['hasQuorum'] === TRUE) {
-            echo 'кворум есть';
+            _e('There is a quorum', 'hoa_polls');
         } else {
-            echo 'кворума нет';
+            _e( 'There is no quorum', 'hoa_polls');
         }
     ?>
 </p>
 <table>
     <tr>
-        <th>Вопрос</th>
-        <th>Да</th>
-        <th>Нет</th>
-        <th>Воздержался</th>
+        <th><?php _e('Question', 'hoa_polls'); ?></th>
+        <th><?php _e('Yes', 'hoa_polls'); ?></th>
+        <th><?php _e('No', 'hoa_polls'); ?></th>
+        <th><?php _e('Skip', 'hoa_polls'); ?></th>
     </tr>
     <?php
         foreach ($data['pollResult']['questions'] as $row) {
@@ -28,13 +28,13 @@
     ?>
 </table>
 <br>
-<button onclick="toggleVoteResults()">Показать ответы</button>
+<button onclick="toggleVoteResults()"><?php _e('Show answers', 'hoa_polls'); ?></button>
 <br>
 <div id="VoteResults" style="display: none">
     <br>
     <table>
         <tr>
-            <th>Квартира</th>
+            <th><?php _e('Room', 'hoa_polls'); ?></th>
             <?php
             foreach ($data['pollQuestions'] as $row){
                 echo '<th>' . $row['questionText'] . '</th>';
@@ -44,10 +44,11 @@
     <?php
         foreach ($data['pollAnswers'] as $row) {
             echo '<tr>';
+            ksort($row);
             foreach ($row as $key => $column) {
-                echo '<td>' . $column;
+                echo '<td>' . __($column, 'hoa_polls');
                 if ($key == 0 && !$data['pollArchived']){
-                    echo '(<a href="' . admin_url('admin.php?page=homeowners-association-polls&hoa_path=answer/edit/') . $data['pollId'] . '/' . $column . '">редактировать</a> / <a href="' . admin_url('admin.php?page=homeowners-association-polls&hoa_path=answer/delete/') . $data['pollId'] . '/' . $column . '" onclick="return confirmDelete();">удалить</a>)';
+                    echo '(<a href="' . admin_url('admin.php?page=homeowners-association-polls&hoa_path=answer/edit/') . $data['pollId'] . '/' . $column . '">' . __('edit', 'hoa_polls') . '</a> / <a href="' . admin_url('admin.php?page=homeowners-association-polls&hoa_path=answer/delete/') . $data['pollId'] . '/' . $column . '" onclick="return confirmDelete();">' . __('delete', 'hoa_polls') . '</a>)';
                 }
                 echo '</td>';
             }
@@ -59,6 +60,6 @@
 <br>
 <?php
     if (!$data['pollArchived']) {
-        echo '<li><a href="' . admin_url('admin.php?page=homeowners-association-polls&hoa_path=answer/fill/') . $data['pollId'] . '">Добавить ответы</a></li>';
+        echo '<li><a href="' . admin_url('admin.php?page=homeowners-association-polls&hoa_path=answer/fill/') . $data['pollId'] . '">' . __('Add answers', 'hoa_polls') . '</a></li>';
     }
 ?>

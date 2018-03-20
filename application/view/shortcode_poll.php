@@ -1,20 +1,20 @@
 <h1><?php echo htmlentities($data['pollResult']['title']); ?></h1>
 <p>
-Проголосовало <?php echo $data['pollResult']['numberOfVoters']; ?> квартир, обладающих <?php echo $data['pollResult']['percentVoted']; ?>% голосов -
     <?php
+        echo sprintf(__("%s rooms have voted. It's %s%% of the vote. ", 'hoa_polls'), $data['pollResult']['numberOfVoters'], $data['pollResult']['percentVoted']);
         if ($data['pollResult']['hasQuorum'] === TRUE) {
-            echo 'кворум есть';
+            _e('There is a quorum', 'hoa_polls');
         } else {
-            echo 'кворума нет';
+            _e( 'There is no quorum', 'hoa_polls');
         }
     ?>
 </p>
 <table>
     <tr>
-        <th>Вопрос</th>
-        <th>Да</th>
-        <th>Нет</th>
-        <th>Воздержался</th>
+        <th><?php _e('Question', 'hoa_polls'); ?></th>
+        <th><?php _e('Yes', 'hoa_polls'); ?></th>
+        <th><?php _e('No', 'hoa_polls'); ?></th>
+        <th><?php _e('Skip', 'hoa_polls'); ?></th>
     </tr>
     <?php
         foreach ($data['pollResult']['questions'] as $row) {

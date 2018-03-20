@@ -29,8 +29,8 @@ class Model_Admin extends Model
      */
     function importCsv($columns)
     {
-        $room_column = $columns['Номер квартиры'];
-        $area_columnn = $columns['Площадь'];
+        $room_column = $columns[__('Room number', 'hoa_polls')];
+        $area_columnn = $columns[__('Room area', 'hoa_polls')];
         $csv_lines = explode(PHP_EOL, $_SESSION['import_csv_file']);
         foreach ($csv_lines as $csv_line) {
             $csv_cells[] = str_getcsv($csv_line, ';');
