@@ -28,7 +28,7 @@
     ?>
 </table>
 <br>
-<button onclick="toggleVoteResults()"><?php _e('Show answers', 'hoa_polls'); ?></button>
+<button onclick="toggleVoteResults('VoteResults')"><?php _e('Show answers', 'hoa_polls'); ?></button>
 <br>
 <div id="VoteResults" style="display: none">
     <br>
