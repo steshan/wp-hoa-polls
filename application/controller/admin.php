@@ -13,6 +13,7 @@ class Controller_Admin extends Controller {
             $this->view->generate('admin.php', 'template.php');
         }
         else{
+            $data['read_only'] = $this->model->isArchived();
             $this->view->generate('admin_rooms.php', 'template.php', $data);
         }
     }
@@ -47,9 +48,17 @@ class Controller_Admin extends Controller {
     function action_delete()
     {
         $this->model = new Model_Admin();
-        $this->model->deleteRooms();
-        $data['message'] = __('Data deleted', 'hoa_polls');
-        $data['url'] = admin_url('admin.php?page=homeowners-association-polls&hoa_path=admin');
-        $this->view->generate('redirect.php', 'template.php', $data);
+        $is_archived = $this->model->isArchived();
+        //echo $is_archived;
+        if ($is_archived){
+            $data['message'] = __("You can't delete data", 'hoa_polls');
+            $data['url'] = admin_url('admin.php?page=homeowners-association-polls&hoa_path=admin');
+            $this->view->generate('redirect.php', 'template.php', $data);
+        } else {
+            $this->model->deleteRooms();
+            $data['message'] = __('Data deleted', 'hoa_polls');
+            $data['url'] = admin_url('admin.php?page=homeowners-association-polls&hoa_path=admin');
+            $this->view->generate('redirect.php', 'template.php', $data);
+        }
     }
 }

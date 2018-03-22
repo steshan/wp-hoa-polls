@@ -74,4 +74,21 @@ class Model_Admin extends Model
         $rooms_table = Db::getInstance()->prefix . 'hoa_rooms';
         Db::getInstance()->query("DELETE FROM $rooms_table");
     }
+
+     /**
+     * Check if we have at least one archived poll
+     * @return bool
+     */
+    function isArchived()
+    {
+        $polls_table = Db::getInstance()->prefix . 'hoa_polls';
+        $result = Db::getInstance()->get_row("SELECT count(`id`) as read_count from $polls_table where `read_only` = 1", ARRAY_A);
+        //print_r($result);
+        if ($result['read_count'] == 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
 }

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Home owners association polls\n"
-"POT-Creation-Date: 2018-03-20 22:16+0300\n"
-"PO-Revision-Date: 2018-03-20 22:16+0300\n"
+"POT-Creation-Date: 2018-03-21 09:39+0300\n"
+"PO-Revision-Date: 2018-03-21 13:18+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru_RU\n"
@@ -19,11 +19,11 @@ msgstr ""
 
 #: application/controller/admin.php:21 application/view/admin.php:3
 msgid "Upload"
-msgstr ""
+msgstr "Загрузить"
 
 #: application/controller/admin.php:26 application/view/admin_table.php:2
 msgid "Import"
-msgstr "Импортировать данные"
+msgstr "Импортировать"
 
 #: application/controller/admin.php:29 application/view/admin_table.php:9
 msgid "Select a column type"
@@ -33,7 +33,11 @@ msgstr "Выберите тип столбца"
 msgid "Data imported"
 msgstr "Данные импортированы"
 
-#: application/controller/admin.php:51
+#: application/controller/admin.php:52
+msgid "You can't delete data"
+msgstr "Удаление данных запрещено"
+
+#: application/controller/admin.php:57
 msgid "Data deleted"
 msgstr "Данные удалены"
 
@@ -198,7 +202,7 @@ msgstr "Новый вопрос"
 msgid "Edit poll"
 msgstr "Редактировать голосование"
 
-#: homeowners-association-polls.php:94
+#: homeowners-association-polls.php:94 homeowners-association-polls.php:95
 msgid "Polls"
 msgstr "Голосования"
 

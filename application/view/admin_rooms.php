@@ -1,5 +1,12 @@
 <form action="<?php echo admin_url('admin.php?page=homeowners-association-polls&hoa_path=admin/delete') ?>" method="POST">
-    <input type="submit" name="submit" value="<?php _e('Delete data', 'hoa_polls'); ?>"><br>
+    <?php
+        if (!$data['read_only']) {
+            echo '<input id="deleteButton" type="submit" name="submit" value="' . __('Delete data', 'hoa_polls') . '">';
+        }
+
+    ?>
+
+    <br>
     <br>
     <table>
        <?php
