@@ -14,3 +14,8 @@
 #hoaAnswerAdd, #questions_title {
     display: inline-block;
 }
+
+.hoa_error_msg {
+     display: none;
+     color: red;
+ }

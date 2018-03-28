@@ -3,9 +3,7 @@
 <form onsubmit="return validateAnswerAdd(<?php echo $data['rooms']; ?>);" action="<?php echo admin_url('admin.php?page=homeowners-association-polls&hoa_path=answer/fill/') . $data['pollId']; ?>" method="POST">
     <label for="roomNumber"><?php _e('Enter room number', 'hoa_polls'); ?></label>
     <input onchange="resetErrors('hoa_room_number');" type="text" name="roomNumber" id="hoa_room_number">
-    <div id='hoa_room_number_msg' style='display:none; color: red'>
-        <p><?php _e("room number is numeric", 'hoa_polls'); ?></p>
-    </div>
+    <span id='hoa_room_number_msg' class="hoa_error_msg"><?php _e("room number is numeric", 'hoa_polls'); ?></span>
     <br>
     <br>
     <div onchange="resetErrors('hoaAnswerAdd');" id="hoaAnswerAdd">
@@ -15,9 +13,7 @@
     }
     ?>
     </div>
-    <div id='hoaAnswerAdd_msg' style='display:none; color: red'>
-        <p><?php _e("not all questions answered", 'hoa_polls'); ?></p>
-    </div>
+    <span id='hoaAnswerAdd_msg' class="hoa_error_msg"><?php _e("not all questions answered", 'hoa_polls'); ?></span>
     <br>
     <input type="submit" name="submit" value="<?php _e('Save', 'hoa_polls'); ?>">
 </form>

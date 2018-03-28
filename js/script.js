@@ -121,6 +121,6 @@ function setErrors(elementId) {
     var element = document.getElementById(elementId);
     element.style.border = style_error;
     var msg = document.getElementById(elementId + '_msg');
-    msg.style.display = '';
+    msg.style.display = 'block';
 
 }
