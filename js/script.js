@@ -13,7 +13,6 @@ function addElement(parentId, elementTag, elementId, html) {
     newElement.setAttribute('id', elementId);
     newElement.innerHTML = html;
     p.appendChild(newElement);
-
     resetErrors('questions_title');
 }
 
@@ -24,7 +23,7 @@ function removeElement(elementId) {
 
 function addPollQuestion() {
     questionId++;
-    var html = '<input type="text" onchange="resetErrors(\'question-' + questionId + '\');" id="question-' + questionId + '" name="poll_questions[]"><a href="" onclick="removeElement(\'question-entry-' + questionId + '\'); return false;">Remove</a>';
+    var html = '<input type="text" onchange="resetErrors(\'question-' + questionId + '\');" id="question-' + questionId + '" name="poll_questions[]"><a href="" onclick="removeElement(\'question-entry-' + questionId + '\'); return false;">Remove</a><span id="question-' + questionId + '_msg" class="hoa_error_msg">Нужно заполнить текст вопроса</span>';
     addElement('poll_questions', 'p', 'question-entry-' + questionId, html);
 }
 
@@ -67,7 +66,6 @@ function validateAnswerAdd(rooms) {
 
 function validatePollAdd() {
     var result = true;
-    var style_error = '2px solid red';
     var pollQuestions = document.getElementById('poll_questions');
     result = validatePollEdit();
 
@@ -78,11 +76,10 @@ function validatePollAdd() {
         var children = pollQuestions.children;
         for (var i = 0; i < children.length; i++) {
             if (children[i].getElementsByTagName('input')[0].value == ''){
-                children[i].getElementsByTagName('input')[0].style.border = style_error;
+                setErrors(children[i].getElementsByTagName('input')[0].id);
                 result = false;
             }
         }
-
     }
 
     return result;
@@ -122,5 +119,4 @@ function setErrors(elementId) {
     element.style.border = style_error;
     var msg = document.getElementById(elementId + '_msg');
     msg.style.display = 'block';
-
 }
