@@ -2,22 +2,16 @@
 <form onsubmit="return validatePollAdd();" action="#" method="POST">
 <label for="poll_name"><?php _e('Poll name', 'hoa_polls'); ?></label>
 <input onchange="resetErrors('hoa_poll_name');" name="poll_name" id="hoa_poll_name" type="text">
-<div id='hoa_poll_name_msg' style='display:none; color: red'>
-<p><?php _e("poll name shouldn't be empty", 'hoa_polls'); ?></p>
-</div>
+<p id='hoa_poll_name_msg' class="hoa_error_msg"><?php _e("poll name shouldn't be empty", 'hoa_polls'); ?></p>
 <br>
 <br>
 <label for="poll_quorum"><?php _e('Minimum number of votes for a quorum', 'hoa_polls'); ?></label>
 <input onchange="resetErrors('hoa_poll_quorum');" name="poll_quorum" id="hoa_poll_quorum" type="text">
-<div id='hoa_poll_quorum_msg' style='display:none; color: red'>
-<p><?php _e('quorum is numeric between 1-100', 'hoa_polls'); ?></p>
-</div>
+<p id='hoa_poll_quorum_msg' class="hoa_error_msg"><?php _e('quorum is numeric between 1-100', 'hoa_polls'); ?></p>
 <br>
 <br>
 <p id="questions_title"><strong><?php _e('Question list', 'hoa_polls'); ?></strong></p>
-<div id='questions_title_msg' style='display:none; color: red'>
-<p><?php _e('add at least one question', 'hoa_polls'); ?></p>
-</div>
+<p id='questions_title_msg' class="hoa_error_msg"><?php _e('add at least one question', 'hoa_polls'); ?></p>
 <br>
 <div id="poll_questions">
 </div>
