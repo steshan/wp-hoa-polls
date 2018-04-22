@@ -106,7 +106,7 @@ class Controller_Poll extends Controller
         }
         $this->model = new Model_Poll($request);
         $this->model->archivePoll();
-        $data['message'] = "Редактирование запрещено.";
+        $data['message'] = __("You can't change results of poll.", 'hoa_polls');
         $data['url'] = admin_url('admin.php?page=homeowners-association-polls');
         $this->view->generate('redirect.php', 'template.php', $data);
     }

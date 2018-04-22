@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Home owners association polls\n"
-"POT-Creation-Date: 2018-03-21 09:39+0300\n"
-"PO-Revision-Date: 2018-03-21 13:18+0300\n"
+"POT-Creation-Date: 2018-04-14 17:46+0300\n"
+"PO-Revision-Date: 2018-04-14 17:47+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru_RU\n"
@@ -17,34 +17,34 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: application/controller/admin.php:21 application/view/admin.php:3
+#: application/controller/admin.php:22 application/view/admin.php:3
 msgid "Upload"
 msgstr "Загрузить"
 
-#: application/controller/admin.php:26 application/view/admin_table.php:2
+#: application/controller/admin.php:27 application/view/admin_table.php:2
 msgid "Import"
 msgstr "Импортировать"
 
-#: application/controller/admin.php:29 application/view/admin_table.php:9
+#: application/controller/admin.php:30 application/view/admin_table.php:9
 msgid "Select a column type"
 msgstr "Выберите тип столбца"
 
-#: application/controller/admin.php:41
+#: application/controller/admin.php:42
 msgid "Data imported"
 msgstr "Данные импортированы"
 
-#: application/controller/admin.php:52
+#: application/controller/admin.php:54
 msgid "You can't delete data"
 msgstr "Удаление данных запрещено"
 
-#: application/controller/admin.php:57
+#: application/controller/admin.php:59
 msgid "Data deleted"
 msgstr "Данные удалены"
 
 #: application/controller/answer.php:21 application/controller/answer.php:63
 #: application/controller/poll.php:28 application/controller/poll.php:77
-#: application/view/answer_add.php:16 application/view/answer_edit.php:27
-#: application/view/poll_add.php:18 application/view/poll_edit.php:11
+#: application/view/answer_add.php:18 application/view/answer_edit.php:27
+#: application/view/poll_add.php:21 application/view/poll_edit.php:13
 msgid "Save"
 msgstr "Сохранить"
 
@@ -85,12 +85,12 @@ msgstr "Удаление голосования запрещено."
 msgid "The poll is saved"
 msgstr "Голосование сохранено."
 
-#: application/model/admin.php:32 application/view/admin_rooms.php:6
+#: application/model/admin.php:32 application/view/admin_rooms.php:13
 #: application/view/admin_table.php:9
 msgid "Room number"
 msgstr "Номер квартиры"
 
-#: application/model/admin.php:33 application/view/admin_rooms.php:6
+#: application/model/admin.php:33 application/view/admin_rooms.php:13
 #: application/view/admin_table.php:9
 msgid "Room area"
 msgstr "Площадь квартиры"
@@ -103,7 +103,7 @@ msgstr "Страница не найдена."
 msgid "Error"
 msgstr "Ошибка"
 
-#: application/view/admin_rooms.php:2
+#: application/view/admin_rooms.php:4
 msgid "Delete data"
 msgstr "Удалить данные"
 
@@ -111,23 +111,31 @@ msgstr "Удалить данные"
 msgid "Enter room number"
 msgstr "Введите номер квартиры"
 
-#: application/view/answer_add.php:11 application/view/answer_edit.php:12
+#: application/view/answer_add.php:6
+msgid "room number is numeric"
+msgstr "введите номер квартиры (число)"
+
+#: application/view/answer_add.php:12 application/view/answer_edit.php:12
 #: application/view/answer_edit.php:15 application/view/answer_edit.php:18
 #: application/view/poll.php:15 application/view/shortcode_poll.php:15
 msgid "Yes"
 msgstr "Да"
 
-#: application/view/answer_add.php:11 application/view/answer_edit.php:12
+#: application/view/answer_add.php:12 application/view/answer_edit.php:12
 #: application/view/answer_edit.php:15 application/view/answer_edit.php:18
 #: application/view/poll.php:16 application/view/shortcode_poll.php:16
 msgid "No"
 msgstr "Нет"
 
-#: application/view/answer_add.php:11 application/view/answer_edit.php:12
+#: application/view/answer_add.php:12 application/view/answer_edit.php:12
 #: application/view/answer_edit.php:15 application/view/answer_edit.php:18
 #: application/view/poll.php:17 application/view/shortcode_poll.php:17
 msgid "Skip"
 msgstr "Воздержался"
+
+#: application/view/answer_add.php:16
+msgid "not all questions answered"
+msgstr "вы ответили не на все вопросы"
 
 #: application/view/answer_edit.php:2 application/view/poll.php:37
 msgid "Room"
@@ -186,15 +194,27 @@ msgstr "Новое голосование"
 msgid "Poll name"
 msgstr "Название голосования"
 
-#: application/view/poll_add.php:7 application/view/poll_edit.php:7
+#: application/view/poll_add.php:5 application/view/poll_edit.php:5
+msgid "poll name shouldn't be empty"
+msgstr "введите название голосования"
+
+#: application/view/poll_add.php:8 application/view/poll_edit.php:8
 msgid "Minimum number of votes for a quorum"
 msgstr "Минимум голосов для кворума"
 
-#: application/view/poll_add.php:11
+#: application/view/poll_add.php:10 application/view/poll_edit.php:10
+msgid "quorum is numeric between 1-100"
+msgstr "введите кворум (число 1-100)"
+
+#: application/view/poll_add.php:13
 msgid "Question list"
 msgstr "Список вопросов"
 
-#: application/view/poll_add.php:16
+#: application/view/poll_add.php:14
+msgid "add at least one question"
+msgstr "добавьте хотя бы 1 вопрос"
+
+#: application/view/poll_add.php:19
 msgid "New question"
 msgstr "Новый вопрос"
 
@@ -209,6 +229,22 @@ msgstr "Голосования"
 #: homeowners-association-polls.php:96
 msgid "Settings"
 msgstr "Настройки"
+
+#: homeowners-association-polls.php:104
+msgid "Remove"
+msgstr "Удалить"
+
+#: homeowners-association-polls.php:104
+msgid "Fill the text of the question"
+msgstr "Нужно заполнить текст вопроса"
+
+#: homeowners-association-polls.php:104
+msgid "You confirm deletion?"
+msgstr "Вы подтверждаете удаление?"
+
+#: homeowners-association-polls.php:104
+msgid "Do not allow editing of data?"
+msgstr "Запретить редактирование данных?"
 
 #~ msgid "Download"
 #~ msgstr "Загрузить"

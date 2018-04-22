@@ -4,7 +4,7 @@
 Plugin Name: Homeowners Association Polls
 Plugin URI:
 Description: This plugin adds polls support for Homeowners Association
-Version: 0.0.3
+Version: 1.0.0
 Text Domain: homeowners-association-polls
 Domain Path: /languages/
 Author: Ann Tataranovich
@@ -101,6 +101,7 @@ function hoa_polls_load_resources() {
     wp_enqueue_style( 'hoa-polls' );
     wp_register_script( 'hoa-polls-script', plugins_url('/js/script.js', __FILE__));
     wp_enqueue_script( 'hoa-polls-script');
+    wp_localize_script('hoa-polls-script', 'hoaPollsLocalization', array('Remove' => __('Remove', 'hoa_polls'), 'Fill' => __('Fill the text of the question', 'hoa_polls'), 'DeleteComfirm' => __('You confirm deletion?', 'hoa_polls'), 'AllowEdit' => __('Do not allow editing of data?', 'hoa_polls')));
 }
 
 add_action('init', 'hoa_polls_load_resources');

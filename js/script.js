@@ -13,7 +13,7 @@ function addElement(parentId, elementTag, elementId, html) {
     newElement.setAttribute('id', elementId);
     newElement.innerHTML = html;
     p.appendChild(newElement);
-    document.getElementById('questions_title').style.border = '';
+    resetErrors('questions_title');
 }
 
 function removeElement(elementId) {
@@ -23,31 +23,30 @@ function removeElement(elementId) {
 
 function addPollQuestion() {
     questionId++;
-    var html = '<input type="text" onchange="resetErrors(\'question-' + questionId + '\');" id="question-' + questionId + '" name="poll_questions[]"><a href="" onclick="removeElement(\'question-entry-' + questionId + '\'); return false;">Remove</a>';
+    var html = '<input type="text" onchange="resetErrors(\'question-' + questionId + '\');" id="question-' + questionId + '" name="poll_questions[]"><a href="" onclick="removeElement(\'question-entry-' + questionId + '\'); return false;">' + hoaPollsLocalization.Remove + '</a><span id="question-' + questionId + '_msg" class="hoa_error_msg">' + hoaPollsLocalization.Fill + '</span>';
     addElement('poll_questions', 'p', 'question-entry-' + questionId, html);
 }
 
 var questionId = 0;
 
 function confirmDelete() {
-    return confirm("Вы подтверждаете удаление?");
+    return confirm(hoaPollsLocalization.DeleteComfirm);
 }
 
 function confirmReadOnly() {
-    return confirm("Запретить редактировать данные?");
+    return confirm(hoaPollsLocalization.AllowEdit);
 }
 
 
 function validateAnswerAdd(rooms) {
     var result = true;
-    var style_error = '2px solid red';
     var roomNumber = document.getElementById('hoa_room_number');
     var answersParent = document.getElementById('hoaAnswerAdd');
     var answers = answersParent.getElementsByTagName('input');
     var numberOfCheckedRadios = 0;
 
     if (!(isNumeric(roomNumber.value) && roomNumber.value <= rooms && roomNumber.value >= 1)) {
-        roomNumber.style.border = style_error;
+        setErrors('hoa_room_number');
         result = false;
     }
 
@@ -58,7 +57,7 @@ function validateAnswerAdd(rooms) {
     }
 
     if (answers.length / 3 !== numberOfCheckedRadios) {
-        answersParent.style.border = style_error;
+        setErrors('hoaAnswerAdd');
         result = false;
     }
 
@@ -67,23 +66,20 @@ function validateAnswerAdd(rooms) {
 
 function validatePollAdd() {
     var result = true;
-    var style_error = '2px solid red';
     var pollQuestions = document.getElementById('poll_questions');
-
     result = validatePollEdit();
 
     if (pollQuestions.childElementCount == 0){
         result = false;
-        document.getElementById('questions_title').style.border = style_error;
+        setErrors('questions_title');
     } else {
         var children = pollQuestions.children;
         for (var i = 0; i < children.length; i++) {
             if (children[i].getElementsByTagName('input')[0].value == ''){
-                children[i].getElementsByTagName('input')[0].style.border = style_error;
+                setErrors(children[i].getElementsByTagName('input')[0].id);
                 result = false;
             }
         }
-
     }
 
     return result;
@@ -91,17 +87,15 @@ function validatePollAdd() {
 
 function validatePollEdit() {
     var result = true;
-    var style_error = '2px solid red';
     var pollName = document.getElementById('hoa_poll_name');
     var pollQuorum = document.getElementById('hoa_poll_quorum');
-
     if (pollName.value === '') {
-        pollName.style.border = style_error;
+        setErrors('hoa_poll_name');
         result = false;
     }
 
     if (!(isNumeric(pollQuorum.value) && pollQuorum.value <= 100 && pollQuorum.value >=0 )) {
-        pollQuorum.style.border = style_error;
+        setErrors('hoa_poll_quorum');
         result = false;
     }
 
@@ -111,8 +105,18 @@ function validatePollEdit() {
 function resetErrors(elementId){
     var element = document.getElementById(elementId);
     element.style.border = '';
+    var elementMsg = document.getElementById(elementId+'_msg');
+    elementMsg.style.display = 'none';
 }
 
 function isNumeric(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
+}
+
+function setErrors(elementId) {
+    var style_error = '2px solid red';
+    var element = document.getElementById(elementId);
+    element.style.border = style_error;
+    var msg = document.getElementById(elementId + '_msg');
+    msg.style.display = 'block';
 }
