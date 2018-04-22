@@ -4,7 +4,7 @@
 Plugin Name: Homeowners Association Polls
 Plugin URI:
 Description: This plugin adds polls support for Homeowners Association
-Version: 0.0.3
+Version: 1.0.0
 Text Domain: homeowners-association-polls
 Domain Path: /languages/
 Author: Ann Tataranovich
