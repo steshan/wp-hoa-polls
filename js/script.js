@@ -23,18 +23,18 @@ function removeElement(elementId) {
 
 function addPollQuestion() {
     questionId++;
-    var html = '<input type="text" onchange="resetErrors(\'question-' + questionId + '\');" id="question-' + questionId + '" name="poll_questions[]"><a href="" onclick="removeElement(\'question-entry-' + questionId + '\'); return false;">Remove</a><span id="question-' + questionId + '_msg" class="hoa_error_msg">Нужно заполнить текст вопроса</span>';
+    var html = '<input type="text" onchange="resetErrors(\'question-' + questionId + '\');" id="question-' + questionId + '" name="poll_questions[]"><a href="" onclick="removeElement(\'question-entry-' + questionId + '\'); return false;">' + hoaPollsLocalization.Remove + '</a><span id="question-' + questionId + '_msg" class="hoa_error_msg">' + hoaPollsLocalization.Fill + '</span>';
     addElement('poll_questions', 'p', 'question-entry-' + questionId, html);
 }
 
 var questionId = 0;
 
 function confirmDelete() {
-    return confirm("Вы подтверждаете удаление?");
+    return confirm(hoaPollsLocalization.DeleteComfirm);
 }
 
 function confirmReadOnly() {
-    return confirm("Запретить редактировать данные?");
+    return confirm(hoaPollsLocalization.AllowEdit);
 }
 
 
